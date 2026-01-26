@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プロモーション画像テンプレート</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f0f0;
+        }
+        
+        .promo-container {
+            margin: 20px auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Small Promo Tile: 440x280px */
+        .small-promo {
+            width: 440px;
+            height: 280px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+        
+        .small-promo .icon {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .small-promo h1 {
+            font-size: 28px;
+            margin: 0 0 10px 0;
+            font-weight: bold;
+        }
+        
+        .small-promo p {
+            font-size: 14px;
+            margin: 0;
+            opacity: 0.9;
+        }
+        
+        /* Large Promo Tile: 920x680px */
+        .large-promo {
+            width: 920px;
+            height: 680px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px;
+            box-sizing: border-box;
+            color: white;
+        }
+        
+        .large-promo .left {
+            flex: 1;
+            padding-right: 40px;
+        }
+        
+        .large-promo .icon-large {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 24px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 72px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .large-promo h1 {
+            font-size: 48px;
+            margin: 0 0 20px 0;
+            font-weight: bold;
+        }
+        
+        .large-promo .subtitle {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        
+        .large-promo .features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .large-promo .features li {
+            font-size: 16px;
+            margin: 12px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .large-promo .features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .large-promo .right {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .large-promo .demo-table {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .large-promo table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .large-promo th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            font-size: 14px;
+            text-align: left;
+        }
+        
+        .large-promo td {
+            padding: 10px 12px;
+            font-size: 13px;
+            border-bottom: 1px solid #e0e0e0;
+            color: #333;
+        }
+        
+        .large-promo tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* Marquee Promo Tile: 1400x560px */
+        .marquee-promo {
+            width: 1400px;
+            height: 560px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px;
+            box-sizing: border-box;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .marquee-promo .content {
+            text-align: center;
+            z-index: 2;
+            max-width: 800px;
+        }
+        
+        .marquee-promo .icon-xl {
+            width: 140px;
+            height: 140px;
+            background: white;
+            border-radius: 28px;
+            margin: 0 auto 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 84px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+        
+        .marquee-promo h1 {
+            font-size: 64px;
+            margin: 0 0 24px 0;
+            font-weight: bold;
+        }
+        
+        .marquee-promo .tagline {
+            font-size: 28px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+        
+        .marquee-promo .cta {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 16px 48px;
+            border-radius: 30px;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+        }
+        
+        .marquee-promo .cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+        
+        .marquee-promo .decoration {
+            position: absolute;
+            opacity: 0.1;
+            font-size: 300px;
+            z-index: 1;
+        }
+        
+        .marquee-promo .decoration.left {
+            left: -50px;
+            top: 50px;
+        }
+        
+        .marquee-promo .decoration.right {
+            right: -50px;
+            bottom: 50px;
+        }
+        
+        .label {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
+            font-weight: bold;
+        }
+        
+        .instructions {
+            max-width: 920px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .instructions h2 {
+            color: #667eea;
+            margin-top: 0;
+        }
+        
+        .instructions ol {
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="instructions">
+        <h2>📸 プロモーション画像の作成方法</h2>
+        <p>このページを使用して、Chrome Web Store用のプロモーション画像を作成できます。</p>
+        <ol>
+            <li>各画像の上で右クリック → 「名前を付けて画像を保存」（またはスクリーンショットツールを使用）</li>
+            <li>画像編集ソフト（Photoshop、GIMP、Canvaなど）でカスタマイズ（任意）</li>
+            <li>指定のサイズで保存（PNG形式推奨）</li>
+            <li>Chrome Web Store Developer Dashboardにアップロード</li>
+        </ol>
+        <p><strong>注意：</strong> アイコンの絵文字（📋）は実際のアイコン画像（icon128.png）に置き換えることをお勧めします。</p>
+    </div>
+
+    <div class="promo-container">
+        <div class="small-promo">
+            <div class="icon">📋</div>
+            <h1>テーブルコピー</h1>
+            <p>Webページのテーブルを<br>ワンクリックでExcelへ</p>
+        </div>
+        <div class="label">Small Promo Tile (440x280px)</div>
+    </div>
+
+    <div class="promo-container">
+        <div class="large-promo">
+            <div class="left">
+                <div class="icon-large">📋</div>
+                <h1>テーブルコピー<br>拡張機能</h1>
+                <p class="subtitle">Webのテーブルを簡単にExcelへ</p>
+                <ul class="features">
+                    <li>ワンクリックで簡単コピー</li>
+                    <li>結合セル完全対応</li>
+                    <li>Excel直接貼り付け可能</li>
+                    <li>全サイト対応</li>
+                    <li>プライバシー保護</li>
+                </ul>
+            </div>
+            <div class="right">
+                <div class="demo-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>商品名</th>
+                                <th>価格</th>
+                                <th>在庫</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ノートPC</td>
+                                <td>¥89,800</td>
+                                <td>15</td>
+                            </tr>
+                            <tr>
+                                <td>マウス</td>
+                                <td>¥2,980</td>
+                                <td>50</td>
+                            </tr>
+                            <tr>
+                                <td>SSD 1TB</td>
+                                <td>¥12,800</td>
+                                <td>30</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="label">Large Promo Tile (920x680px)</div>
+    </div>
+
+    <div class="promo-container">
+        <div class="marquee-promo">
+            <div class="decoration left">📋</div>
+            <div class="decoration right">📊</div>
+            <div class="content">
+                <div class="icon-xl">📋</div>
+                <h1>テーブルコピー拡張機能</h1>
+                <p class="tagline">Webのテーブルを、ワンクリックでExcelへ</p>
+                <a href="#" class="cta">今すぐインストール</a>
+            </div>
+        </div>
+        <div class="label">Marquee Promo Tile (1400x560px)</div>
+    </div>
+
+    <div class="instructions">
+        <h2>💡 カスタマイズのヒント</h2>
+        <ul>
+            <li>実際のicon128.pngを使用して、絵文字を置き換える</li>
+            <li>実際のスクリーンショットを追加して、よりリアルにする</li>
+            <li>ブランドカラーに合わせて色を調整する</li>
+            <li>より詳細な機能説明を追加する</li>
+            <li>多言語対応（英語版も作成）</li>
+        </ul>
+        <p><strong>推奨ツール：</strong></p>
+        <ul>
+            <li><a href="https://www.canva.com/" target="_blank">Canva</a> - オンラインデザインツール</li>
+            <li><a href="https://www.figma.com/" target="_blank">Figma</a> - プロフェッショナルデザインツール</li>
+            <li><a href="https://www.gimp.org/" target="_blank">GIMP</a> - 無料画像編集ソフト</li>
+        </ul>
+    </div>
+</body>
+</html>
