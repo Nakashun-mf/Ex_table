@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "テーブルコピー拡張機能",
+  "version": "2.0.0",
+  "description": "Webページのテーブルを右クリックメニューからExcelに貼り付け可能な形式でコピーします。結合セルにも対応しています。",
+  "permissions": [
+    "contextMenus",
+    "activeTab",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
