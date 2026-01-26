@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プライバシーポリシー - テーブルコピー拡張機能</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            background-color: #f8f9fa;
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #ffffff;
+            padding: 60px 80px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .content {
+            padding: 50px 80px;
+        }
+
+        .last-updated {
+            background-color: #e8f4f8;
+            border-left: 4px solid #2a5298;
+            padding: 15px 20px;
+            margin-bottom: 40px;
+            border-radius: 4px;
+            font-size: 0.95em;
+            color: #34495e;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section h2 {
+            color: #1e3c72;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e6ed;
+            letter-spacing: -0.3px;
+        }
+
+        .section h3 {
+            color: #2a5298;
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            letter-spacing: -0.2px;
+        }
+
+        .section p {
+            margin-bottom: 20px;
+            color: #34495e;
+            font-size: 1.05em;
+        }
+
+        .section ul {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .section li {
+            margin-bottom: 12px;
+            color: #34495e;
+            font-size: 1.05em;
+        }
+
+        .section li strong {
+            color: #1e3c72;
+            font-weight: 600;
+        }
+
+        .highlight-box {
+            background-color: #f0f7ff;
+            border-left: 4px solid #2a5298;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box strong {
+            color: #1e3c72;
+            font-weight: 600;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, #e0e6ed, transparent);
+            margin: 60px 0;
+        }
+
+        .contact-section {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 50px;
+        }
+
+        .contact-section h2 {
+            border-bottom: none;
+            margin-bottom: 15px;
+        }
+
+        .footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 30px 80px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 100%;
+            }
+            
+            .header {
+                padding: 50px 40px;
+            }
+
+            .content {
+                padding: 40px 50px;
+            }
+
+            .footer {
+                padding: 30px 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 20px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .footer {
+                padding: 30px 20px;
+            }
+
+            .section h2 {
+                font-size: 1.5em;
+            }
+        }
+
+        .lang-switch {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-top: 20px;
+        }
+
+        .lang-switch a {
+            color: #2a5298;
+            text-decoration: none;
+            padding: 8px 16px;
+            margin: 0 5px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .lang-switch a:hover {
+            background-color: #e8f4f8;
+        }
+
+        .lang-switch a.active {
+            background-color: #2a5298;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>プライバシーポリシー</h1>
+            <div class="subtitle">テーブルコピー拡張機能</div>
+        </div>
+
+        <div class="content">
+            <div class="lang-switch">
+                <a href="#japanese" class="active" onclick="showLanguage('japanese'); return false;">日本語</a>
+                <a href="#english" onclick="showLanguage('english'); return false;">English</a>
+            </div>
+
+            <!-- 日本語版 -->
+            <div id="japanese-content">
+                <div class="last-updated">
+                    <strong>最終更新日:</strong> 2026年1月26日
+                </div>
+
+                <div class="section">
+                    <h2>データの収集について</h2>
+                    <div class="highlight-box">
+                        <p>この拡張機能は、<strong>いかなるユーザーデータも収集、保存、送信しません</strong>。</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>権限の使用目的</h2>
+                    <p>この拡張機能は以下の権限を使用しますが、すべてローカルで処理され、外部に送信されることはありません：</p>
+
+                    <h3>1. contextMenus（コンテキストメニュー）</h3>
+                    <ul>
+                        <li><strong>目的:</strong> 右クリックメニューに「テーブルをコピーする」オプションを追加するために使用します</li>
+                        <li><strong>データの扱い:</strong> この権限はメニュー項目の表示にのみ使用され、データの収集や送信には使用されません</li>
+                    </ul>
+
+                    <h3>2. activeTab（アクティブタブ）</h3>
+                    <ul>
+                        <li><strong>目的:</strong> 現在開いているタブのテーブル要素にアクセスし、テキストを抽出するために使用します</li>
+                        <li><strong>データの扱い:</strong> テーブルのテキストデータは一時的にメモリに保持され、クリップボードにコピーされた後は破棄されます。外部への送信や永続的な保存は行いません</li>
+                    </ul>
+
+                    <h3>3. clipboardWrite（クリップボード書き込み）</h3>
+                    <ul>
+                        <li><strong>目的:</strong> 抽出したテーブルデータをユーザーのクリップボードに書き込むために使用します</li>
+                        <li><strong>データの扱い:</strong> クリップボードにコピーされたデータは、ユーザーのデバイス内でのみ処理され、外部に送信されることはありません</li>
+                    </ul>
+
+                    <h3>4. host_permissions: &lt;all_urls&gt;（全URLへのアクセス）</h3>
+                    <ul>
+                        <li><strong>目的:</strong> あらゆるWebページ上のテーブルをコピーできるようにするために必要です</li>
+                        <li><strong>データの扱い:</strong> この権限はページ上のテーブル要素へのアクセスにのみ使用されます。閲覧履歴、個人情報、その他のページコンテンツにはアクセスしません</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2>データの保存と送信</h2>
+                    <ul>
+                        <li><strong>ローカル処理のみ:</strong> すべてのデータ処理はユーザーのブラウザ内で完結します</li>
+                        <li><strong>外部送信なし:</strong> いかなるデータも外部サーバーやサードパーティに送信されません</li>
+                        <li><strong>保存なし:</strong> テーブルデータは一時的にメモリに保持されるのみで、永続的な保存は行いません</li>
+                        <li><strong>トラッキングなし:</strong> ユーザーの行動追跡、分析、統計収集は一切行いません</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2>サードパーティサービス</h2>
+                    <p>この拡張機能は、サードパーティのサービスやライブラリを使用していません。すべての機能は自己完結型です。</p>
+                </div>
+
+                <div class="section">
+                    <h2>クッキー</h2>
+                    <p>この拡張機能はクッキーを使用しません。</p>
+                </div>
+
+                <div class="contact-section">
+                    <h2>お問い合わせ</h2>
+                    <p>プライバシーに関するご質問やご懸念がある場合は、GitHubリポジトリのIssuesセクションからお問い合わせください。</p>
+                </div>
+            </div>
+
+            <!-- 英語版 -->
+            <div id="english-content" style="display: none;">
+                <div class="last-updated">
+                    <strong>Last Updated:</strong> January 26, 2026
+                </div>
+
+                <div class="section">
+                    <h2>Data Collection</h2>
+                    <div class="highlight-box">
+                        <p>This extension <strong>does not collect, store, or transmit any user data whatsoever</strong>.</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Permission Usage</h2>
+                    <p>This extension uses the following permissions, but all processing is done locally and no data is sent externally:</p>
+
+                    <h3>1. contextMenus</h3>
+                    <ul>
+                        <li><strong>Purpose:</strong> Used to add a "Copy Table" option to the right-click context menu</li>
+                        <li><strong>Data Handling:</strong> This permission is only used to display menu items and is not used for data collection or transmission</li>
+                    </ul>
+
+                    <h3>2. activeTab</h3>
+                    <ul>
+                        <li><strong>Purpose:</strong> Used to access table elements on the currently open tab and extract text</li>
+                        <li><strong>Data Handling:</strong> Table text data is temporarily held in memory and discarded after being copied to the clipboard. No external transmission or persistent storage occurs</li>
+                    </ul>
+
+                    <h3>3. clipboardWrite</h3>
+                    <ul>
+                        <li><strong>Purpose:</strong> Used to write extracted table data to the user's clipboard</li>
+                        <li><strong>Data Handling:</strong> Data copied to the clipboard is only processed within the user's device and is never sent externally</li>
+                    </ul>
+
+                    <h3>4. host_permissions: &lt;all_urls&gt;</h3>
+                    <ul>
+                        <li><strong>Purpose:</strong> Required to enable table copying on any webpage</li>
+                        <li><strong>Data Handling:</strong> This permission is only used to access table elements on pages. It does not access browsing history, personal information, or other page content</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2>Data Storage and Transmission</h2>
+                    <ul>
+                        <li><strong>Local Processing Only:</strong> All data processing is completed within the user's browser</li>
+                        <li><strong>No External Transmission:</strong> No data is sent to external servers or third parties</li>
+                        <li><strong>No Storage:</strong> Table data is only temporarily held in memory and is not persistently stored</li>
+                        <li><strong>No Tracking:</strong> No user behavior tracking, analytics, or statistics collection is performed</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2>Third-Party Services</h2>
+                    <p>This extension does not use any third-party services or libraries. All functionality is self-contained.</p>
+                </div>
+
+                <div class="section">
+                    <h2>Cookies</h2>
+                    <p>This extension does not use cookies.</p>
+                </div>
+
+                <div class="contact-section">
+                    <h2>Contact</h2>
+                    <p>If you have any questions or concerns about privacy, please contact us through the Issues section of our GitHub repository.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2026 テーブルコピー拡張機能. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        function showLanguage(lang) {
+            const japaneseContent = document.getElementById('japanese-content');
+            const englishContent = document.getElementById('english-content');
+            const links = document.querySelectorAll('.lang-switch a');
+
+            if (lang === 'japanese') {
+                japaneseContent.style.display = 'block';
+                englishContent.style.display = 'none';
+                links[0].classList.add('active');
+                links[1].classList.remove('active');
+            } else {
+                japaneseContent.style.display = 'none';
+                englishContent.style.display = 'block';
+                links[0].classList.remove('active');
+                links[1].classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

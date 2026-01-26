@@ -1,6 +1,22 @@
 # テーブルコピー拡張機能
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-準備中-lightgrey)]()
+
 Webページ上のテーブルを右クリックメニューから簡単にコピーできるChrome拡張機能です。結合セル（rowspan/colspan）にも対応しており、Excelに貼り付け可能な形式でクリップボードにコピーします。
+
+## 📋 目次
+
+- [機能](#機能)
+- [インストール方法](#インストール方法)
+- [使い方](#使い方)
+- [プライバシー](#プライバシー)
+- [対応ブラウザ](#対応ブラウザ)
+- [技術仕様](#技術仕様)
+- [開発者向け情報](#開発者向け情報)
+- [貢献](#貢献)
+- [ライセンス](#ライセンス)
+- [変更履歴](#変更履歴)
 
 ## バージョン
 
@@ -20,14 +36,16 @@ Webページ上のテーブルを右クリックメニューから簡単にコ�
 
 ## インストール方法
 
-### Chrome Web Storeからインストール（公開後）
+### Chrome Web Storeからインストール
 
 **準備中** - 現在、Chrome Web Storeへの公開準備を進めています。
 
 公開後は以下のURLからインストールできるようになります：
 - Chrome Web Store: （URLは公開後に追加されます）
 
-### 開発者モードでのインストール（開発者向け）
+### 開発者モードでのインストール
+
+このリポジトリから直接インストールする方法です。
 
 #### Chrome
 
@@ -66,6 +84,12 @@ Webページ上のテーブルを右クリックメニューから簡単にコ�
 - **フォーマット**: TSV（タブ区切り値）
 - **クリップボード**: Clipboard API（フォールバック: execCommand）
 
+## プライバシー
+
+この拡張機能は**いかなるユーザーデータも収集、保存、送信しません**。すべての処理はローカルで完結します。
+
+詳細については、[プライバシーポリシー](privacy_policy.html)をご覧ください。
+
 ## 注意事項
 
 - テーブル内のテキストのみがコピーされます（リンクのURLや画像は含まれません）
@@ -86,31 +110,62 @@ Webページ上のテーブルを右クリックメニューから簡単にコ�
 - 複雑な構造のテーブルの場合、一部のセルが正しく処理されない可能性があります
 - CSSで視覚的に表現されているテーブル（`<div>`要素など）には対応していません
 
-## Chrome Web Store 公開について
-
-この拡張機能をChrome Web Storeに公開するための準備が整っています：
-
-- ✅ プライバシーポリシー（[privacy_policy.md](privacy_policy.md)）
-- ✅ ライセンス（MIT - [LICENSE](LICENSE)）
-- ✅ ストア掲載情報（[store_description.txt](store_description.txt)）
-- ✅ パッケージ作成スクリプト（`create_package.ps1`）
-- ⏳ スクリーンショット（[SCREENSHOT_GUIDE.md](SCREENSHOT_GUIDE.md) 参照）
-
-公開手順の詳細は [WEB_STORE_CHECKLIST.md](WEB_STORE_CHECKLIST.md) を参照してください。
-
 ## 開発者向け情報
 
 開発者向けの詳細情報については、[README_DEV.md](README_DEV.md)を参照してください。
 
+- [アーキテクチャ](README_DEV.md#アーキテクチャ)
+- [開発環境のセットアップ](README_DEV.md#開発環境のセットアップ)
+- [ビルドとテスト](README_DEV.md#ビルドとテスト)
+- [デバッグ方法](README_DEV.md#デバッグ方法)
+
+## 貢献
+
+このプロジェクトへの貢献を歓迎します！
+
+### 貢献方法
+
+1. このリポジトリをフォークします
+2. 機能ブランチを作成します (`git checkout -b feature/amazing-feature`)
+3. 変更をコミットします (`git commit -m 'Add some amazing feature'`)
+4. ブランチにプッシュします (`git push origin feature/amazing-feature`)
+5. プルリクエストを開きます
+
+### コード規約
+
+- コードは既存のスタイルに従ってください
+- 新しい機能を追加する場合は、適切なコメントを追加してください
+- 変更をコミットする前に、動作確認を行ってください
+
+### 問題報告
+
+バグを発見した場合は、GitHubの[Issues](https://github.com/Nakashun-mfe/Ex_table/issues)で報告してください。以下の情報を含めてください：
+
+- ブラウザのバージョン
+- 拡張機能のバージョン
+- 再現手順
+- 期待される動作と実際の動作
+- スクリーンショット（可能な場合）
+
+### 機能要望
+
+新機能の提案も歓迎します。GitHubの[Issues](https://github.com/Nakashun-mf/Ex_table/issues)で機能要望を投稿してください。
+
+> **注意**: リポジトリのURLは、実際のGitHubリポジトリURLに置き換えてください。
+
+## セキュリティ
+
+セキュリティ上の問題を発見した場合は、**公開のIssuesではなく**、直接メンテナーに連絡してください。
+
+セキュリティポリシーの詳細については、[SECURITY.md](SECURITY.md)（準備中）を参照してください。
+
 ## ライセンス
 
-このプロジェクトはMITライセンスの下で公開されています。
-
-## 問題報告・機能要望
-
-バグや機能要望がある場合は、GitHubのIssuesで報告してください。
+このプロジェクトは[MITライセンス](LICENSE)の下で公開されています。
 
 ## 変更履歴
+
+すべての変更履歴は[CHANGELOG.md](CHANGELOG.md)（準備中）で確認できます。
 
 ### v2.0.2 (2026-01-26)
 - copyTable関数をasync/awaitに対応させてクリップボードコピーを修正
