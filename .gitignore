@@ -31,6 +31,8 @@ yarn.lock
 *.crx
 *.pem
 *.zip
+package/
+screenshots/
 
 # Backup files
 *.bak

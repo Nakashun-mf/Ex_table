@@ -1,0 +1,146 @@
+===========================================
+Chrome Web Store 掲載情報
+===========================================
+
+■ 拡張機能名（日本語）
+テーブルコピー拡張機能
+
+■ 拡張機能名（英語）
+Table Copy Extension
+
+■ 短い説明（日本語）132文字以内
+Webページのテーブルを右クリックで簡単コピー。結合セル対応。Excelに直接貼り付け可能。
+
+■ 短い説明（英語）132文字以内
+Copy web tables with right-click. Supports merged cells. Paste directly into Excel.
+
+===========================================
+■ 詳細な説明（日本語）
+===========================================
+
+Webページ上のテーブルを右クリックメニューから簡単にコピーできるChrome拡張機能です。結合セル（rowspan/colspan）にも対応しており、ExcelやGoogleスプレッドシートに直接貼り付け可能な形式でクリップボードにコピーします。
+
+【主な機能】
+
+✓ ワンクリックでテーブルをコピー
+テーブル上で右クリックして「テーブルをコピーする」を選択するだけで、テーブル全体をクリップボードにコピーできます。
+
+✓ 結合セル完全対応
+rowspanやcolspanで結合されたセルも適切に処理し、元の構造を保ったままコピーします。
+
+✓ Excel/スプレッドシート対応
+TSV形式（タブ区切り）でコピーするため、Microsoft ExcelやGoogleスプレッドシートに直接貼り付けできます。
+
+✓ ネストされたテーブル対応
+テーブル内に別のテーブルがある場合でも、右クリックした対象のテーブルのみを正確にコピーします。
+
+✓ すべてのWebサイトで動作
+あらゆるWebサイトのテーブルに対応。Wikipedia、データベース検索結果、統計サイトなど、どこでも使えます。
+
+✓ プライバシー保護
+データは一切収集しません。すべての処理はブラウザ内で完結し、外部への送信は行いません。
+
+【使い方】
+
+1. テーブルが表示されているWebページを開く
+2. コピーしたいテーブル上で右クリック
+3. 「テーブルをコピーする」を選択
+4. ExcelやGoogleスプレッドシートに貼り付け（Ctrl+V）
+
+【対応環境】
+
+- Google Chrome
+- Microsoft Edge
+- その他Chromiumベースのブラウザ
+
+【注意事項】
+
+- テーブル内のテキストのみがコピーされます（リンクのURLや画像は含まれません）
+- CSSで視覚的に表現されている疑似テーブルには対応していません
+
+【プライバシー】
+
+この拡張機能は、ユーザーのプライバシーを最優先に考えています。いかなるデータも収集、保存、送信しません。すべての処理はお使いのブラウザ内で完結します。
+
+詳細なプライバシーポリシーはGitHubリポジトリで確認できます。
+
+===========================================
+■ 詳細な説明（英語）
+===========================================
+
+A Chrome extension that allows you to easily copy web tables from any webpage using the right-click context menu. Supports merged cells (rowspan/colspan) and copies in a format that can be directly pasted into Excel or Google Sheets.
+
+【Key Features】
+
+✓ One-Click Table Copying
+Simply right-click on any table and select "Copy Table" to copy the entire table to your clipboard.
+
+✓ Full Support for Merged Cells
+Properly handles cells merged with rowspan or colspan, preserving the original table structure.
+
+✓ Excel/Spreadsheet Compatible
+Copies in TSV format (tab-separated values), allowing direct pasting into Microsoft Excel or Google Sheets.
+
+✓ Nested Table Support
+Accurately copies only the target table even when tables are nested within other tables.
+
+✓ Works on All Websites
+Compatible with tables on any website - Wikipedia, database search results, statistics sites, and more.
+
+✓ Privacy Protected
+No data collection whatsoever. All processing is done within your browser, with no external transmission.
+
+【How to Use】
+
+1. Open a webpage with a table
+2. Right-click on the table you want to copy
+3. Select "Copy Table"
+4. Paste into Excel or Google Sheets (Ctrl+V)
+
+【Compatible With】
+
+- Google Chrome
+- Microsoft Edge
+- Other Chromium-based browsers
+
+【Notes】
+
+- Only text within tables is copied (links URLs and images are not included)
+- Does not support pseudo-tables created with CSS styling
+
+【Privacy】
+
+This extension prioritizes user privacy. It does not collect, store, or transmit any data. All processing is completed within your browser.
+
+Detailed privacy policy is available in our GitHub repository.
+
+===========================================
+■ カテゴリ
+===========================================
+生産性向上（Productivity）
+
+===========================================
+■ キーワード（5つまで）
+===========================================
+1. table copy
+2. excel
+3. spreadsheet
+4. web scraping
+5. productivity
+
+===========================================
+■ プライバシーポリシーURL
+===========================================
+※GitHubリポジトリのプライバシーポリシーページURLを記載
+例: https://github.com/your-username/Ex_table/blob/master/privacy_policy.md
+
+または、GitHubページを公開して：
+例: https://your-username.github.io/Ex_table/privacy_policy.html
+
+===========================================
+■ サポート/ホームページURL
+===========================================
+※GitHubリポジトリのURLを記載
+例: https://github.com/your-username/Ex_table
+
+===========================================

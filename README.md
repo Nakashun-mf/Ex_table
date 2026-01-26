@@ -20,7 +20,14 @@ Webページ上のテーブルを右クリックメニューから簡単にコ�
 
 ## インストール方法
 
-### 開発者モードでのインストール
+### Chrome Web Storeからインストール（公開後）
+
+**準備中** - 現在、Chrome Web Storeへの公開準備を進めています。
+
+公開後は以下のURLからインストールできるようになります：
+- Chrome Web Store: （URLは公開後に追加されます）
+
+### 開発者モードでのインストール（開発者向け）
 
 #### Chrome
 
@@ -78,6 +85,18 @@ Webページ上のテーブルを右クリックメニューから簡単にコ�
 
 - 複雑な構造のテーブルの場合、一部のセルが正しく処理されない可能性があります
 - CSSで視覚的に表現されているテーブル（`<div>`要素など）には対応していません
+
+## Chrome Web Store 公開について
+
+この拡張機能をChrome Web Storeに公開するための準備が整っています：
+
+- ✅ プライバシーポリシー（[privacy_policy.md](privacy_policy.md)）
+- ✅ ライセンス（MIT - [LICENSE](LICENSE)）
+- ✅ ストア掲載情報（[store_description.txt](store_description.txt)）
+- ✅ パッケージ作成スクリプト（`create_package.ps1`）
+- ⏳ スクリーンショット（[SCREENSHOT_GUIDE.md](SCREENSHOT_GUIDE.md) 参照）
+
+公開手順の詳細は [WEB_STORE_CHECKLIST.md](WEB_STORE_CHECKLIST.md) を参照してください。
 
 ## 開発者向け情報
 
