@@ -14,21 +14,23 @@
   // バックグラウンドスクリプトからのメッセージを受信
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.action === "copyTable") {
-      try {
-        const result = copyTable();
-        sendResponse({ success: result.success, message: result.message });
-      } catch (error) {
-        console.error('テーブルコピーエラー:', error);
-        sendResponse({ success: false, message: `エラー: ${error.message}` });
-      }
+      // 非同期処理を実行
+      copyTable()
+        .then((result) => {
+          sendResponse({ success: result.success, message: result.message });
+        })
+        .catch((error) => {
+          console.error('テーブルコピーエラー:', error);
+          sendResponse({ success: false, message: `エラー: ${error.message}` });
+        });
+      return true; // 非同期レスポンスを許可
     }
-    return true; // 非同期レスポンスを許可
   });
 
   /**
    * テーブルをコピーする
    */
-  function copyTable() {
+  async function copyTable() {
     // 最後に右クリックされた要素から、最も近いテーブルを探す
     const table = findClosestTable(lastRightClickedElement);
     
@@ -46,7 +48,7 @@
     }
 
     // クリップボードにコピー
-    return copyToClipboard(tsvData);
+    return await copyToClipboard(tsvData);
   }
 
   /**
@@ -149,53 +151,54 @@
   /**
    * クリップボードにコピー
    */
-  function copyToClipboard(text) {
+  async function copyToClipboard(text) {
     // 方法1: Clipboard API（推奨）
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      return navigator.clipboard.writeText(text)
-        .then(() => {
-          showNotification('テーブルをコピーしました', true);
-          return { success: true, message: 'テーブルをコピーしました' };
-        })
-        .catch((error) => {
-          console.error('Clipboard API エラー:', error);
-          // Clipboard APIが失敗した場合、フォールバック
-          return fallbackCopyToClipboard(text);
-        });
+      try {
+        await navigator.clipboard.writeText(text);
+        showNotification('テーブルをコピーしました', true);
+        return { success: true, message: 'テーブルをコピーしました' };
+      } catch (error) {
+        console.error('Clipboard API エラー:', error);
+        // Clipboard APIが失敗した場合、フォールバック
+        return await fallbackCopyToClipboard(text);
+      }
     } else {
       // Clipboard APIが利用できない場合、フォールバック
-      return fallbackCopyToClipboard(text);
+      return await fallbackCopyToClipboard(text);
     }
   }
 
   /**
    * フォールバック：execCommand を使用してクリップボードにコピー
    */
-  function fallbackCopyToClipboard(text) {
-    const textarea = document.createElement('textarea');
-    textarea.value = text;
-    textarea.style.position = 'fixed';
-    textarea.style.opacity = '0';
-    document.body.appendChild(textarea);
-    textarea.select();
-    
-    try {
-      const successful = document.execCommand('copy');
-      document.body.removeChild(textarea);
+  async function fallbackCopyToClipboard(text) {
+    return new Promise((resolve) => {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
       
-      if (successful) {
-        showNotification('テーブルをコピーしました', true);
-        return { success: true, message: 'テーブルをコピーしました' };
-      } else {
+      try {
+        const successful = document.execCommand('copy');
+        document.body.removeChild(textarea);
+        
+        if (successful) {
+          showNotification('テーブルをコピーしました', true);
+          resolve({ success: true, message: 'テーブルをコピーしました' });
+        } else {
+          showNotification('コピーに失敗しました', false);
+          resolve({ success: false, message: 'コピーに失敗しました' });
+        }
+      } catch (error) {
+        document.body.removeChild(textarea);
+        console.error('execCommand エラー:', error);
         showNotification('コピーに失敗しました', false);
-        return { success: false, message: 'コピーに失敗しました' };
+        resolve({ success: false, message: `コピーに失敗しました: ${error.message}` });
       }
-    } catch (error) {
-      document.body.removeChild(textarea);
-      console.error('execCommand エラー:', error);
-      showNotification('コピーに失敗しました', false);
-      return { success: false, message: `コピーに失敗しました: ${error.message}` };
-    }
+    });
   }
 
   /**
