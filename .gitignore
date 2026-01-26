@@ -45,6 +45,7 @@ logs/
 tmp/
 temp/
 *.tmp
+commit_message.txt
 
 # Python
 venv/
