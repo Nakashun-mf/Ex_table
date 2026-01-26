@@ -43,6 +43,14 @@
             justify-content: center;
             font-size: 48px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        .small-promo .icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 8px;
         }
         
         .small-promo h1 {
@@ -86,6 +94,14 @@
             justify-content: center;
             font-size: 72px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        .large-promo .icon-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 12px;
         }
         
         .large-promo h1 {
@@ -192,6 +208,14 @@
             justify-content: center;
             font-size: 84px;
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .marquee-promo .icon-xl img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 14px;
         }
         
         .marquee-promo h1 {
@@ -282,8 +306,8 @@
     </div>
 
     <div class="promo-container">
-        <div class="small-promo">
-            <div class="icon">📋</div>
+        <div class="small-promo" id="small-promo">
+            <div class="icon"><img src="icon128.png" alt="テーブルコピーアイコン"></div>
             <h1>テーブルコピー</h1>
             <p>Webページのテーブルを<br>ワンクリックでExcelへ</p>
         </div>
@@ -291,9 +315,9 @@
     </div>
 
     <div class="promo-container">
-        <div class="large-promo">
+        <div class="large-promo" id="large-promo">
             <div class="left">
-                <div class="icon-large">📋</div>
+                <div class="icon-large"><img src="icon128.png" alt="テーブルコピーアイコン"></div>
                 <h1>テーブルコピー<br>拡張機能</h1>
                 <p class="subtitle">Webのテーブルを簡単にExcelへ</p>
                 <ul class="features">
@@ -339,11 +363,11 @@
     </div>
 
     <div class="promo-container">
-        <div class="marquee-promo">
+        <div class="marquee-promo" id="marquee-promo">
             <div class="decoration left">📋</div>
             <div class="decoration right">📊</div>
             <div class="content">
-                <div class="icon-xl">📋</div>
+                <div class="icon-xl"><img src="icon128.png" alt="テーブルコピーアイコン"></div>
                 <h1>テーブルコピー拡張機能</h1>
                 <p class="tagline">Webのテーブルを、ワンクリックでExcelへ</p>
                 <a href="#" class="cta">今すぐインストール</a>

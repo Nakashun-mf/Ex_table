@@ -225,6 +225,30 @@ Webページに注入されるスクリプトです。メイン機能を実装�
    - `chrome://extensions/`で「パッケージ化」をクリック
    - .crxファイルと.pemファイルが生成されます
 
+### プロモーション画像の生成
+
+Chrome Web Store用のプロモーション画像を自動生成できます。
+
+**必要なパッケージ:**
+```bash
+pip install selenium pillow
+```
+
+**使用方法:**
+```bash
+python create_promo_images.py
+```
+
+このスクリプトは以下の3つのプロモーション画像を生成します：
+- `promo_images/small_promo_tile_440x280.png` - Small Promo Tile
+- `promo_images/large_promo_tile_920x680.png` - Large Promo Tile
+- `promo_images/marquee_promo_tile_1400x560.png` - Marquee Promo Tile
+
+**手動での作成:**
+1. `promo_image_template.html` をブラウザで開く
+2. 各プロモーション画像の上で右クリック → スクリーンショットを撮影
+3. 画像編集ソフトで指定サイズにトリミング
+
 ## コーディング規約
 
 1. **JavaScript**
