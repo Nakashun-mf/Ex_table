@@ -13,14 +13,19 @@
 
   // バックグラウンドスクリプトからのメッセージを受信
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.action === "copyTable") {
-      // 非同期処理を実行
-      copyTable()
+    const handlers = {
+      copyTable: () => copyTable(),
+      copyRow: () => copyRow(),
+      copyColumn: () => copyColumn()
+    };
+    const handler = handlers[message.action];
+    if (handler) {
+      handler()
         .then((result) => {
           sendResponse({ success: result.success, message: result.message });
         })
         .catch((error) => {
-          console.error('テーブルコピーエラー:', error);
+          console.error('コピーエラー:', error);
           sendResponse({ success: false, message: `エラー: ${error.message}` });
         });
       return true; // 非同期レスポンスを許可
@@ -48,7 +53,146 @@
     }
 
     // クリップボードにコピー
-    return await copyToClipboard(tsvData);
+    return await copyToClipboard(tsvData, 'テーブルをコピーしました');
+  }
+
+  /**
+   * クリックした行をコピーする
+   */
+  async function copyRow() {
+    const row = findClosestRow(lastRightClickedElement);
+    if (!row) {
+      showNotification('行が見つかりません', false);
+      return { success: false, message: '行が見つかりません' };
+    }
+
+    const cells = Array.from(row.cells);
+    const tsvData = cells.map(cell => getCellText(cell)).join('\t');
+
+    if (!tsvData) {
+      showNotification('行データの取得に失敗しました', false);
+      return { success: false, message: '行データの取得に失敗しました' };
+    }
+
+    return await copyToClipboard(tsvData, 'この行をコピーしました');
+  }
+
+  /**
+   * クリックした列をコピーする
+   */
+  async function copyColumn() {
+    const cell = findClosestCell(lastRightClickedElement);
+    if (!cell) {
+      showNotification('列が見つかりません', false);
+      return { success: false, message: '列が見つかりません' };
+    }
+
+    const table = findClosestTable(lastRightClickedElement);
+    if (!table) {
+      showNotification('テーブルが見つかりません', false);
+      return { success: false, message: 'テーブルが見つかりません' };
+    }
+
+    // クリックしたセルの視覚的な列インデックスを求める
+    const colIndex = getVisualColumnIndex(table, cell);
+    if (colIndex === -1) {
+      showNotification('列インデックスの取得に失敗しました', false);
+      return { success: false, message: '列インデックスの取得に失敗しました' };
+    }
+
+    // 各行からその列のセルテキストを取得
+    const matrix = buildMatrix(table);
+    const columnData = matrix.map(row => row[colIndex] ?? '');
+    const tsvData = columnData.join('\n');
+
+    if (!tsvData) {
+      showNotification('列データの取得に失敗しました', false);
+      return { success: false, message: '列データの取得に失敗しました' };
+    }
+
+    return await copyToClipboard(tsvData, 'この列をコピーしました');
+  }
+
+  /**
+   * 最も近い行（TR）要素を見つける
+   */
+  function findClosestRow(element) {
+    if (!element) return null;
+    let current = element;
+    while (current && current !== document.body) {
+      if (current.tagName === 'TR') return current;
+      current = current.parentElement;
+    }
+    return null;
+  }
+
+  /**
+   * 最も近いセル（TD/TH）要素を見つける
+   */
+  function findClosestCell(element) {
+    if (!element) return null;
+    let current = element;
+    while (current && current !== document.body) {
+      if (current.tagName === 'TD' || current.tagName === 'TH') return current;
+      current = current.parentElement;
+    }
+    return null;
+  }
+
+  /**
+   * セルの視覚的な列インデックスをマトリックスから求める
+   */
+  function getVisualColumnIndex(table, targetCell) {
+    const rows = table.rows;
+    for (let i = 0; i < rows.length; i++) {
+      const cells = rows[i].cells;
+      for (let j = 0; j < cells.length; j++) {
+        if (cells[j] === targetCell) {
+          // この行の前のセルのcolspanを合計して視覚列インデックスを求める
+          let colIndex = 0;
+          for (let k = 0; k < j; k++) {
+            colIndex += cells[k].colSpan || 1;
+          }
+          return colIndex;
+        }
+      }
+    }
+    return -1;
+  }
+
+  /**
+   * テーブル全体のマトリックスを構築（結合セル対応）
+   */
+  function buildMatrix(table) {
+    const rows = table.rows;
+    const matrix = [];
+
+    for (let i = 0; i < rows.length; i++) {
+      const cells = rows[i].cells;
+      let colIndex = 0;
+
+      for (let j = 0; j < cells.length; j++) {
+        const cell = cells[j];
+        const rowspan = cell.rowSpan || 1;
+        const colspan = cell.colSpan || 1;
+        const cellText = getCellText(cell);
+
+        while (matrix[i] && matrix[i][colIndex] !== undefined) {
+          colIndex++;
+        }
+
+        for (let r = 0; r < rowspan; r++) {
+          if (!matrix[i + r]) matrix[i + r] = [];
+          for (let c = 0; c < colspan; c++) {
+            matrix[i + r][colIndex + c] = cellText;
+          }
+        }
+
+        colIndex += colspan;
+      }
+    }
+
+    return matrix;
   }
 
   /**
@@ -78,44 +222,8 @@
    * テーブルをTSV形式に変換
    */
   function convertTableToTSV(table) {
-    const rows = table.rows;
-    if (!rows || rows.length === 0) {
-      return null;
-    }
-
-    // 結合セルを処理するためのマトリックスを作成
-    const matrix = [];
-    
-    for (let i = 0; i < rows.length; i++) {
-      const cells = rows[i].cells;
-      let colIndex = 0;
-
-      for (let j = 0; j < cells.length; j++) {
-        const cell = cells[j];
-        const rowspan = cell.rowSpan || 1;
-        const colspan = cell.colSpan || 1;
-        const cellText = getCellText(cell);
-
-        // 既に埋まっているセルをスキップ
-        while (matrix[i] && matrix[i][colIndex]) {
-          colIndex++;
-        }
-
-        // セルの内容を配置
-        for (let r = 0; r < rowspan; r++) {
-          if (!matrix[i + r]) {
-            matrix[i + r] = [];
-          }
-          for (let c = 0; c < colspan; c++) {
-            matrix[i + r][colIndex + c] = cellText;
-          }
-        }
-
-        colIndex += colspan;
-      }
-    }
-
-    // マトリックスをTSV形式に変換
+    if (!table.rows || table.rows.length === 0) return null;
+    const matrix = buildMatrix(table);
     return matrix.map(row => row.join('\t')).join('\n');
   }
 
@@ -151,28 +259,25 @@
   /**
    * クリップボードにコピー
    */
-  async function copyToClipboard(text) {
-    // 方法1: Clipboard API（推奨）
+  async function copyToClipboard(text, successMessage = 'コピーしました') {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       try {
         await navigator.clipboard.writeText(text);
-        showNotification('テーブルをコピーしました', true);
-        return { success: true, message: 'テーブルをコピーしました' };
+        showNotification(successMessage, true);
+        return { success: true, message: successMessage };
       } catch (error) {
         console.error('Clipboard API エラー:', error);
-        // Clipboard APIが失敗した場合、フォールバック
-        return await fallbackCopyToClipboard(text);
+        return await fallbackCopyToClipboard(text, successMessage);
       }
     } else {
-      // Clipboard APIが利用できない場合、フォールバック
-      return await fallbackCopyToClipboard(text);
+      return await fallbackCopyToClipboard(text, successMessage);
     }
   }
 
   /**
    * フォールバック：execCommand を使用してクリップボードにコピー
    */
-  async function fallbackCopyToClipboard(text) {
+  async function fallbackCopyToClipboard(text, successMessage = 'コピーしました') {
     return new Promise((resolve) => {
       const textarea = document.createElement('textarea');
       textarea.value = text;
@@ -180,14 +285,14 @@
       textarea.style.opacity = '0';
       document.body.appendChild(textarea);
       textarea.select();
-      
+
       try {
         const successful = document.execCommand('copy');
         document.body.removeChild(textarea);
-        
+
         if (successful) {
-          showNotification('テーブルをコピーしました', true);
-          resolve({ success: true, message: 'テーブルをコピーしました' });
+          showNotification(successMessage, true);
+          resolve({ success: true, message: successMessage });
         } else {
           showNotification('コピーに失敗しました', false);
           resolve({ success: false, message: 'コピーに失敗しました' });
