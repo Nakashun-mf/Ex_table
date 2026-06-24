@@ -10,14 +10,12 @@ chrome.runtime.onInstalled.addListener(() => {
   });
   chrome.contextMenus.create({
     id: "copyRow",
-    parentId: "copyTable",
     title: "この行をコピーする",
     contexts: ["page", "selection", "link", "image"],
     documentUrlPatterns: ["http://*/*", "https://*/*", "file:///*"]
   });
   chrome.contextMenus.create({
     id: "copyColumn",
-    parentId: "copyTable",
     title: "この列をコピーする",
     contexts: ["page", "selection", "link", "image"],
     documentUrlPatterns: ["http://*/*", "https://*/*", "file:///*"]
