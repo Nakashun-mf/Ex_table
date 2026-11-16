@@ -1,7 +1,7 @@
 # テーブルコピー拡張機能
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-準備中-lightgrey)]()
+[![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-公開中-blue)](https://chromewebstore.google.com/detail/kaklkpkljnbogaifkndonaenmipmcmhe)
 
 Webページ上のテーブルを右クリックメニューから簡単にコピーできるChrome拡張機能です。結合セル（rowspan/colspan）にも対応しており、Excelに貼り付け可能な形式でクリップボードにコピーします。
 
@@ -37,10 +37,8 @@ Webページ上のテーブルを右クリックメニューから簡単にコ�
 
 ### Chrome Web Storeからインストール
 
-**準備中** - 現在、Chrome Web Storeへの公開準備を進めています。
-
-公開後は以下のURLからインストールできるようになります：
-- Chrome Web Store: （URLは公開後に追加されます）
+以下のURLからインストールできます：
+- [Chrome Web Store](https://chromewebstore.google.com/detail/kaklkpkljnbogaifkndonaenmipmcmhe)
 
 ### 開発者モードでのインストール
 
