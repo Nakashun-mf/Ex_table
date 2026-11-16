@@ -1,7 +1,7 @@
 # テーブルコピー拡張機能
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-準備中-lightgrey)]()
+[![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-公開中-blue)](https://chromewebstore.google.com/detail/kaklkpkljnbogaifkndonaenmipmcmhe)
 
 Webページ上のテーブルを右クリックメニューから簡単にコピーできるChrome拡張機能です。結合セル（rowspan/colspan）にも対応しており、Excelに貼り付け可能な形式でクリップボードにコピーします。
 
@@ -20,10 +20,9 @@ Webページ上のテーブルを右クリックメニューから簡単にコ�
 
 ## バージョン
 
-**v2.0.2** - クリップボードコピーの非同期処理を修正
-- copyTable関数をasync/awaitに対応
-- クリップボードAPIの非同期処理を適切に処理するよう修正
-- テーブルが正常にコピーされない問題を解決
+**v2.1.0** - 行・列コピー機能を追加
+- 右クリックメニューの「テーブルをコピーする」にサブメニューを追加
+- 「この行をコピーする」「この列をコピーする」が使えるように
 
 ## 機能
 
@@ -38,10 +37,8 @@ Webページ上のテーブルを右クリックメニューから簡単にコ�
 
 ### Chrome Web Storeからインストール
 
-**準備中** - 現在、Chrome Web Storeへの公開準備を進めています。
-
-公開後は以下のURLからインストールできるようになります：
-- Chrome Web Store: （URLは公開後に追加されます）
+以下のURLからインストールできます：
+- [Chrome Web Store](https://chromewebstore.google.com/detail/kaklkpkljnbogaifkndonaenmipmcmhe)
 
 ### 開発者モードでのインストール
 
@@ -166,6 +163,9 @@ Webページ上のテーブルを右クリックメニューから簡単にコ�
 ## 変更履歴
 
 すべての変更履歴は[CHANGELOG.md](CHANGELOG.md)（準備中）で確認できます。
+
+### v2.1.0
+- 「この行をコピーする」「この列をコピーする」を追加（「テーブルをコピーする」のサブメニュー）
 
 ### v2.0.2 (2026-01-26)
 - copyTable関数をasync/awaitに対応させてクリップボードコピーを修正

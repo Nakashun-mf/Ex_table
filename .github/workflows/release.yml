@@ -1,0 +1,41 @@
+name: Release to Chrome Web Store
+
+# GitHub で Release を公開すると、Chrome Web Store へアップロードして審査に提出する
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write # Release に zip を添付するため
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: タグと manifest.json のバージョンが一致するか確認
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          VERSION=$(jq -r .version manifest.json)
+          if [ "$TAG" != "$VERSION" ]; then
+            echo "タグ($TAG)と manifest.json のバージョン($VERSION)が一致しません"
+            exit 1
+          fi
+
+      - name: 拡張機能の zip を作成
+        run: |
+          zip -r extension.zip manifest.json background.js content.js icon16.png icon48.png icon128.png
+
+      - name: Chrome Web Store へアップロードして審査に提出
+        env:
+          EXTENSION_ID: ${{ secrets.CWS_EXTENSION_ID }}
+          CLIENT_ID: ${{ secrets.CWS_CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CWS_CLIENT_SECRET }}
+          REFRESH_TOKEN: ${{ secrets.CWS_REFRESH_TOKEN }}
+        run: npx --yes chrome-webstore-upload-cli@3 upload --source extension.zip --auto-publish
+
+      - name: zip を Release に添付
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "$GITHUB_REF_NAME" extension.zip --clobber
