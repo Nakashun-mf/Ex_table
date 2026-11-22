@@ -9,15 +9,21 @@ chrome.runtime.onInstalled.addListener(() => {
     documentUrlPatterns: ["http://*/*", "https://*/*", "file:///*"]
   });
   chrome.contextMenus.create({
+    id: "moreActions",
+    title: "その他の操作",
+    contexts: ["page", "selection", "link", "image"],
+    documentUrlPatterns: ["http://*/*", "https://*/*", "file:///*"]
+  });
+  chrome.contextMenus.create({
     id: "copyRow",
-    parentId: "copyTable",
+    parentId: "moreActions",
     title: "この行をコピーする",
     contexts: ["page", "selection", "link", "image"],
     documentUrlPatterns: ["http://*/*", "https://*/*", "file:///*"]
   });
   chrome.contextMenus.create({
     id: "copyColumn",
-    parentId: "copyTable",
+    parentId: "moreActions",
     title: "この列をコピーする",
     contexts: ["page", "selection", "link", "image"],
     documentUrlPatterns: ["http://*/*", "https://*/*", "file:///*"]
